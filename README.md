@@ -16,11 +16,11 @@ Bienvenue dans cette formation intensive sur **Node.js et les API REST**.
 
 ## 📋 Programme
 
-| Jour | Thèmes | Niveau |
-|---|---|---|
-| [Jour 1](./day1.md) | Node.js, NPM, async/await, Express, CRUD en mémoire | Débutant |
-| [Jour 2](./day2.md) | Middlewares, architecture MVC, validation Joi, SQLite | Intermédiaire |
-| [Jour 3](./day3.md) | JWT, bcrypt, autorisation par rôle, sécurité, Swagger | Confirmé |
+| Jour                     | Thèmes                                                | Niveau        |
+| ------------------------ | ----------------------------------------------------- | ------------- |
+| [Jour 1](./Day1/Day1.md) | Node.js, NPM, async/await, Express, CRUD en mémoire   | Débutant      |
+| [Jour 2](./Day2/Day2.md) | Middlewares, architecture MVC, validation Joi, SQLite | Intermédiaire |
+| [Jour 3](./Day3/Day3.md) | JWT, bcrypt, autorisation par rôle, sécurité, Swagger | Confirmé      |
 
 ---
 
@@ -51,6 +51,7 @@ evaluations/
 ### 4. Envoyer votre rendu
 
 Une fois votre travail pushé, envoyez le lien vers votre fork au formateur :
+
 ```
 https://github.com/VOTRE-PSEUDO/node-api-course
 ```
@@ -73,10 +74,11 @@ Chaque journée se termine par une **évaluation pratique de 2h notée sur 20**.
 Les évaluations sont un **projet fil rouge** : vous construisez la même API Bibliothèque en l'enrichissant chaque jour.
 
 Les instructions détaillées de chaque évaluation (critères, barème) se trouvent en bas de chaque fichier de cours :
-- [Évaluation Jour 1](./Day1/Day1.md#-évaluation-jour-1--projet-fil-rouge--api-bibliothèque)
-- [Évaluation Jour 2](./Day2/Day2.md#-évaluation-jour-2--projet-fil-rouge--api-bibliothèque-avec-persistance)
-- [Évaluation Jour 3](./Day3/Day3.md#-évaluation-jour-3--projet-fil-rouge--api-bibliothèque-sécurisée)
+
+- [Évaluation Jour 1](./Day1/EvaluationDay1.md)
+- [Évaluation Jour 2](./Day2/EvaluationDay2.md)
+- [Évaluation Jour 3](./Day3/EvaluationDay3.md)
 
 ---
 
-*Formation dispensée par [mathblock](https://github.com/mathblock)*
+_Formation dispensée par [mathblock](https://github.com/mathblock)_
