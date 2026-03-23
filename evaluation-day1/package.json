@@ -1,0 +1,12 @@
+{
+  "name": "libraryapi",
+  "version": "1.0.0",
+  "description": "Evaluation Jour 1 - LibraryAPI",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
