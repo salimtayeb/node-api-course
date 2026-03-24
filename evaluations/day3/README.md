@@ -1,24 +1,27 @@
-# Evaluation Jour 2 — LibraryAPI
+# Evaluation Jour 3 — LibraryAPI
 
-API de gestion de bibliothèque réalisée avec Express, Prisma, SQLite, JWT, bcrypt et Zod.
+API de bibliothèque sécurisée réalisée avec Express, Prisma, SQLite, JWT, refresh tokens, Helmet, CORS, rate limiting, Morgan et Swagger.
 
 ## Lancer le projet
 
 - npm install
-- npx prisma migrate dev --name init
+- npx prisma migrate dev --name add_refresh_token
 - npx prisma generate
-- npm run seed
 - npm run dev
 
 ## Variables d'environnement
 
-Le projet utilise un fichier .env local et un fichier .env.example commité.
-
-Variables utilisées :
+Le projet utilise :
 - PORT
+- NODE_ENV
 - DATABASE_URL
 - JWT_SECRET
+- JWT_REFRESH_SECRET
 - JWT_EXPIRES_IN
+- JWT_REFRESH_EXPIRES_IN
+- ALLOWED_ORIGINS
+
+Un fichier .env.example est fourni avec des valeurs de démonstration.
 
 ## Endpoints
 
@@ -26,6 +29,8 @@ Variables utilisées :
 
 - POST /api/auth/register
 - POST /api/auth/login
+- POST /api/auth/refresh
+- POST /api/auth/logout
 - GET /api/auth/me
 
 ### Livres
@@ -36,49 +41,51 @@ Variables utilisées :
 - PUT /api/livres/:id
 - DELETE /api/livres/:id
 
-### Emprunts
+## Sécurité ajoutée au Jour 3
 
-- POST /api/livres/:id/emprunter
-- POST /api/livres/:id/retourner
+- refresh tokens stockés en base avec Prisma
+- cookie refreshToken en HttpOnly
+- helmet pour les headers HTTP de sécurité
+- CORS permissif en développement et strict en production
+- rate limiting global
+- rate limiting renforcé sur /api/auth/login et /api/auth/register
+- limitation de la taille des payloads avec express.json({ limit: "10kb" })
+- gestion sécurisée des erreurs avec notFound + errorHandler
+- logging HTTP avec morgan
+- documentation OpenAPI avec Swagger
+
+## Documentation Swagger
+
+Interface disponible sur :
+
+- /api-docs
+
+## Architecture
+
+Le projet respecte une architecture en couches :
+
+- routes
+- controllers
+- services
+- middlewares
+- validators
+- config
+- db
+- docs
 
 ## Choix techniques
 
 - Express pour l'API HTTP
 - Prisma + SQLite pour la base de données
-- JWT pour l'authentification
 - bcryptjs pour le hash des mots de passe
-- Zod pour la validation des données
-- Architecture en couches :
-  - routes
-  - controllers
-  - services
+- jsonwebtoken pour les access tokens et refresh tokens
+- helmet, cors, express-rate-limit et morgan pour la sécurité et l'observabilité
+- swagger-jsdoc et swagger-ui-express pour la documentation
 
-## Règles d'accès
+## Remarques
 
-- les routes de lecture des livres sont publiques
-- POST /api/livres et PUT /api/livres/:id nécessitent un utilisateur connecté
-- DELETE /api/livres/:id nécessite un admin
-- les routes d'emprunt et de retour nécessitent un utilisateur connecté
-
-## Seed
-
-Le projet contient un seed Prisma qui crée :
-- un compte admin
-- des livres initiaux
-
-Compte admin par défaut :
-- email : admin@library.local
-- mot de passe : Admin1234
-
-## Structure du projet
-
-evaluations/day2/
-- prisma/
-- src/config
-- src/db
-- src/middlewares
-- src/services
-- src/controllers
-- src/routes
-- src/validators
-
+- .env n'est pas commité
+- prisma/dev.db n'est pas commité
+- node_modules n'est pas commité
+- les migrations Prisma sont commitées
+- .env.example est commité
